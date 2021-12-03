@@ -12,5 +12,5 @@ func main() {
 	fmt.Println(day1.TotalGroupedIncreases(3))
 	fmt.Println(day2.CalculateFinalPosition())
 	fmt.Println(day2.CalculateFinalPositionWithAim())
-	fmt.Println(day3.GetRates())
+	fmt.Println(day3.CalculatePowerConsumption())
 }
