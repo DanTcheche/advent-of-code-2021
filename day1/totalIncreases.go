@@ -2,7 +2,6 @@ package day1
 
 import (
 	"advent-of-code-2021/utils"
-	"strconv"
 )
 
 var input = utils.GetFileData("./day1/input.txt")
@@ -10,11 +9,8 @@ var input = utils.GetFileData("./day1/input.txt")
 func TotalIncreases() int {
 	totalIncreases := 0
 	previousValue := -1
-	for _, value := range input {
-		intValue, err := strconv.Atoi(value)
-		if err != nil {
-			panic("Invalid input")
-		}
+	for _, line := range input {
+		intValue := utils.ConvertToInt(line)
 		if previousValue > 0 {
 			if intValue > previousValue {
 				totalIncreases++
@@ -31,10 +27,7 @@ func TotalGroupedIncreases(groupSize int) int {
 	for i := 1; i < len(input) - (groupSize-1) ; i++ {
 		totalSum := 0
 		for j := 0; j < groupSize; j++ {
-			valueToAdd, err := strconv.Atoi(input[i+j])
-			if err != nil {
-				panic("Invalid input")
-			}
+			valueToAdd := utils.ConvertToInt(input[i+j])
 			totalSum += valueToAdd
 		}
 		if totalSum > previousValue {
