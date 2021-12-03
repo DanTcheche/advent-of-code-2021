@@ -7,4 +7,5 @@ import (
 
 func main() {
 	fmt.Println(day1.TotalIncreases())
+	fmt.Println(day1.TotalGroupedIncreases(3))
 }
