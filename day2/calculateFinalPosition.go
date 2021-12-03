@@ -3,7 +3,6 @@ package day2
 import (
 	"advent-of-code-2021/utils"
 	"strings"
-	"fmt"
 )
 
 var input = utils.GetFileData("./day2/input.txt")
@@ -37,10 +36,15 @@ func getMovements() []movement{
 	return movements
 }
 
-func CalculateFinalPosition() int {
+func initialize() (position, []movement){
 	var movements []movement
 	position := newPosition(0, 0, 0)
 	movements = getMovements()
+	return position, movements
+}
+
+func CalculateFinalPosition() int {
+	position, movements := initialize()
 	for _, movement := range movements {
 		if movement.direction == "forward" {
 			position.horizontal += movement.units
@@ -50,6 +54,23 @@ func CalculateFinalPosition() int {
 		}
 		if movement.direction == "down" {
 			position.depth += movement.units
+		}
+	}
+	return position.depth * position.horizontal
+}
+
+func CalculateFinalPositionWithAim() int {
+	position, movements := initialize()
+	for _, movement := range movements {
+		if movement.direction == "forward" {
+			position.horizontal += movement.units
+			position.depth += position.aim * movement.units
+		}
+		if movement.direction == "up" {
+			position.aim -= movement.units
+		}
+		if movement.direction == "down" {
+			position.aim += movement.units
 		}
 	}
 	return position.depth * position.horizontal
